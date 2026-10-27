@@ -33,7 +33,7 @@ az sql server firewall-rule create --resource-group $RESOURCE_GROUP --server $PR
 
 # 5. Create the Elastic Performance Pool (Shared compute bucket)
 echo "🛍️ Creating Elastic Pool..."
-az sql pool create --resource-group $RESOURCE_GROUP --server $PRIMARY_SERVER \
+az sql elastic-pool create --resource-group $RESOURCE_GROUP --server $PRIMARY_SERVER \
   --name $POOL_NAME --edition Standard --capacity 50
 
 # 6. Deploy Both Databases Inside the Shared Pool
