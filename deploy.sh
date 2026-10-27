@@ -38,8 +38,8 @@ az sql elastic-pool create --resource-group $RESOURCE_GROUP --server $PRIMARY_SE
 
 # 6. Deploy Both Databases Inside the Shared Pool
 echo "🗄️ Provisioning databases inside the Elastic Pool..."
-az sql db create --resource-group $RESOURCE_GROUP --server $PRIMARY_SERVER --name $DB_1 --pool-name $POOL_NAME
-az sql db create --resource-group $RESOURCE_GROUP --server $PRIMARY_SERVER --name $DB_2 --pool-name $POOL_NAME
+az sql db create --resource-group $RESOURCE_GROUP --server $PRIMARY_SERVER --name $DB_1 --elastic-pool $POOL_NAME
+az sql db create --resource-group $RESOURCE_GROUP --server $PRIMARY_SERVER --name $DB_2 --elastic-pool $POOL_NAME
 
 # 7. Create Secondary Disaster Recovery Server
 echo "🌍 Creating DR Standby Server in $SECONDARY_LOCATION..."
