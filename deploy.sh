@@ -46,9 +46,17 @@ echo "🌍 Creating DR Standby Server in $SECONDARY_LOCATION..."
 az sql server create --name $SECONDARY_SERVER --resource-group $RESOURCE_GROUP \
   --location $SECONDARY_LOCATION --admin-user $ADMIN_USER --admin-password $ADMIN_PASSWORD
 
+# 🛍️ Create the matching target Elastic Pool on the Secondary Server
+echo "🛍️ Provisioning target Elastic Pool on the DR Standby Server..."
+az sql elastic-pool create --resource-group $RESOURCE_GROUP --server $SECONDARY_SERVER \
+  --name $POOL_NAME --edition Standard --capacity 50
+
+
+
 # 8. Establish Asynchronous Geo-Replication Link for Database 2
 echo "📡 Establishing Cross-Region Geo-Replication link..."
 az sql db replica create --resource-group $RESOURCE_GROUP --server $PRIMARY_SERVER \
-  --name $DB_2 --partner-server $SECONDARY_SERVER --partner-resource-group $RESOURCE_GROUP
+  --name $DB_2 --partner-server $SECONDARY_SERVER --partner-resource-group $RESOURCE_GROUP \
+  
 
 echo "✅ Deployment finished successfully! Infrastructure pipeline is operational."
