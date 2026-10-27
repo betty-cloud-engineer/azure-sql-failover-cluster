@@ -11,7 +11,9 @@ POOL_NAME="ep-hr-workloads-prod"
 DB_1="db-hr-employees"
 DB_2="db-hr-payrollss"
 ADMIN_USER="sqladmin"
-ADMIN_PASSWORD="Bryanminai123@" # Change this to a secure password
+# Securely prompt for password (input is hidden while typing)
+read -s -p "🔑 Enter a secure Azure SQL Admin Password: " ADMIN_PASSWORD
+echo "" 
 
 echo "🚀 Starting Automated Azure SQL Infrastructure Deployment..."
 
